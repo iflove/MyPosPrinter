@@ -94,8 +94,8 @@ class PosPrinter {
     /**
      * 选择字符对齐模式
      */
-    fun setTextAlignment(@TextAlignment textAlignment: Long): PosPrinter {
-        write(HexCommands.TEXT_ALIGNMENT, textAlignment.toInt())
+    fun setTextAlignment(@TextAlignment textAlignment: Int): PosPrinter {
+        write(HexCommands.TEXT_ALIGNMENT, textAlignment)
         return this
     }
 
@@ -120,21 +120,21 @@ class PosPrinter {
          *
          * Use with [.setTextAlignment]
          */
-        const val TEXT_ALIGNMENT_TEXT_START = 0L
+        const val TEXT_ALIGNMENT_TEXT_START = 0
 
         /**
          * Center the paragraph, e.g. ALIGN_CENTER.
          *
          * Use with [.setTextAlignment]
          */
-        const val TEXT_ALIGNMENT_CENTER = 1L
+        const val TEXT_ALIGNMENT_CENTER = 1
 
         /**
          * Align to the end of the paragraph, e.g. ALIGN_RIGHT.
          *
          * Use with [.setTextAlignment]
          */
-        const val TEXT_ALIGNMENT_TEXT_END = 2L
+        const val TEXT_ALIGNMENT_TEXT_END = 2
 
         @IntDef(TEXT_ALIGNMENT_TEXT_START, TEXT_ALIGNMENT_CENTER, TEXT_ALIGNMENT_TEXT_END)
         @Retention(AnnotationRetention.SOURCE)

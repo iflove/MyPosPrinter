@@ -2,7 +2,9 @@ package com.baoda.mypos
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.view.isVisible
 import com.baoda.pos.PosPrinter
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 
 
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        helloTextView.isVisible = false
         doAsync {
             //初始化订单数据
             initData()
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     .printWordSpace(3)
                     .printText("小计")
                     .printTextLine("----------------------------------------------")
-                    .innerPrint({
+                    .apply {
                         for (foods in goodsBean!!) {
                             printTextLine(foods.name)
                             setTextAbsoluteLocation(20)
@@ -54,8 +58,7 @@ class MainActivity : AppCompatActivity() {
                             printWordSpace(3)
                             printText(foods.sum)
                         }
-                        this
-                    })
+                    }
                     .printTextLine("----------------------------------------------")
                     .printLine()
                     .printText("总计(人民币)：")
